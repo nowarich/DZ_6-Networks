@@ -1,7 +1,8 @@
 package ru.geekbains.DZ;
 
-public class ClientApp {
+public class ServerApp {
     public static void main(String[] args) {
-        new Client();
+        new Server();
+
     }
 }

@@ -17,14 +17,23 @@ public class Server {
             serverSocket = new ServerSocket(8888);
             System.out.println("Server initiated " + serverSocket);
             Socket client = serverSocket.accept();
-            System.out.println("ClientApp joined: " + client);
+            System.out.println("Client joined: " + client);
             in = new DataInputStream(client.getInputStream());
             System.out.println(in);
             out = new DataOutputStream(client.getOutputStream());
             System.out.println(out);
 
 
-            listen();
+//            listen();
+            new Thread(() -> {
+                while (true){
+                    try {
+                        System.out.println(in.readUTF());
+                    } catch (Exception e) {
+                        throw new RuntimeException("SWW", e);
+                    }
+                }
+            }).start();
 
             Scanner scanner = new Scanner(System.in);
             while (true) {
@@ -37,15 +46,15 @@ public class Server {
 
     }
 
-    private static void listen() {
-        new Thread(() -> {
-            while (true){
-                try {
-                    System.out.println(in.readUTF());
-                } catch (Exception e) {
-                    throw new RuntimeException("SWW", e);
-                }
-            }
-        }).start();
-    }
+//    private void listen() {
+//        new Thread(() -> {
+//            while (true){
+//                try {
+//                    System.out.println(in.readUTF());
+//                } catch (Exception e) {
+//                    throw new RuntimeException("SWW", e);
+//                }
+//            }
+//        }).start();
+//    }
 }
