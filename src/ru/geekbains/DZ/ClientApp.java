@@ -1,0 +1,7 @@
+package ru.geekbains.DZ;
+
+public class ClientApp {
+    public static void main(String[] args) {
+        new Client();
+    }
+}
